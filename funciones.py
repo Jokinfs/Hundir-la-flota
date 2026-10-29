@@ -56,3 +56,72 @@ def colocar_barcos(tablero):
         colocar_barco(barco, tablero)
     return tablero
 
+tablero = crear_tablero()
+flota = crear_flota()
+print("FLOTA: ")
+print(flota)
+
+for barco in flota:
+    colocar_barco(barco, tablero)
+
+print("TABLERO")
+print(tablero)
+
+
+def disparo(tablero_rival,tablero_disparos, fila, columna):
+    if tablero_rival[fila, columna] == "O":
+        tablero_rival[fila, columna]= "X"
+        tablero_disparos[fila, columna] = "X"
+        print("tocado")
+        return True
+    else:
+        tablero_rival[fila, columna] = "A"
+        tablero_disparos[fila, columna] = "A"
+        print("agua")
+        return False
+
+def pintar(t_barcos_jugador, t_disparos_jugador):
+    print("********** TUS BARCOS **********")
+    print(t_barcos_jugador)
+    print()
+    print("********** TUS DISPAROS **********")
+    print(t_disparos_jugador)
+    print()
+
+def turnos(t_barcos_rival, t_disparo_rival, t_barcos_jugador, t_disparo_jugador):
+    ganador = ""
+    turno_jugador = True
+    while True:
+        if turno_jugador == True:
+            print("Turno jugador")
+            while True:
+                fila = int(input("Fila (0-9): "))
+                col = int(input("Columna (0-9): "))
+                if fila < 0 or fila > 9 or col < 0 or col > 9:
+                    print("Fuera del tablero. Elige números entre 0 y 9")
+                elif t_disparo_jugador[fila, col] != "_":
+                    print("Ya has disparado ahí. Elige otra casilla")
+                else:
+                    break
+            disparo(t_barcos_rival, t_disparo_jugador, fila, col)
+            turno_jugador = False
+            pintar(t_barcos_jugador, t_disparo_jugador)
+        else:
+            print("Turno rival")
+            while True:
+                fila = np.random.randint(10)
+                col = np.random.randint(10)
+                if t_disparo_rival[fila, col] == "_":
+                    break
+            disparo(t_barcos_jugador, t_disparo_rival, fila, col)
+            turno_jugador = True
+            pintar(t_barcos_jugador, t_disparo_jugador)
+
+        if "O" not in t_barcos_rival:
+            ganador = "jugador"
+            break
+        if "O" not in t_barcos_jugador:
+            ganador = "rival"
+            break
+    return ganador
+
