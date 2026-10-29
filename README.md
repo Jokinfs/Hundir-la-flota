@@ -4,7 +4,7 @@ Juego de Hundir la flota en Python contra la máquina, ejecutable desde terminal
 
 ## Cómo jugar
 
-    git clone <URL del repositorio>
+    git clone <https://github.com/Jokinfs/Hundir-la-flota.git>
     cd Hundir-la-flota
     py main.py
 
