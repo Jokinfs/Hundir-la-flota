@@ -1,7 +1,3 @@
-# Prueba_HLF
-
-proyecto_clase_(10_2026)
-
 # Hundir la flota
 
 Juego de Hundir la flota en Python contra la máquina, ejecutable desde terminal.
