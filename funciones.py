@@ -125,3 +125,4 @@ def turnos(t_barcos_rival, t_disparo_rival, t_barcos_jugador, t_disparo_jugador)
             break
     return ganador
 
+
